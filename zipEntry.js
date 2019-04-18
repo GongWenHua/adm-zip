@@ -198,7 +198,8 @@ module.exports = function (/*Buffer*/input) {
             // _isDirectory = (lastChar === 47) || (lastChar === 92);
             // _entryHeader.fileNameLength = _entryName.length;
             var nameTemp = iconv.decode(val, 'GBK');
-            _entryName = Utils.toBuffer(val);
+            _entryName = Utils.toBuffer(nameTemp);
+            console.log('zdm-zip ===> ', 'val:', val, 'nameTemp', nameTemp, '_entryName', _entryName)
             var lastChar = _entryName[_entryName.length - 1];
             _isDirectory = (lastChar == 47) || (lastChar == 92);
             _entryHeader.fileNameLength = _entryName.length;
