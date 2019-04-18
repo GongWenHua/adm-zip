@@ -202,7 +202,6 @@ module.exports = function (/*Buffer*/input) {
             var lastChar = _entryName[_entryName.length - 1];
             _isDirectory = (lastChar == 47) || (lastChar == 92);
             _entryHeader.fileNameLength = _entryName.length;
-            _entryName = nameTemp;
         },
 
         get extra () { return _extra; },
