@@ -193,17 +193,8 @@ module.exports = function (/*Buffer*/input) {
         get entryName () { return _entryName.toString(); },
         get rawEntryName() { return _entryName; },
         set entryName (val) {
-            // _entryName = Utils.toBuffer(val);
-            // var lastChar = _entryName[_entryName.length - 1];
-            // _isDirectory = (lastChar === 47) || (lastChar === 92);
-            // _entryHeader.fileNameLength = _entryName.length;
-	         // var nameTemp = iconv.decode(val, 'GBK');
 	         var _val = iconv.encode(val, 'GBK')
 	         _entryName = Utils.toBuffer(_val);
-	         console.warn('zdm-zip ===> ',
-		         'val:', val,
-		         '_val', _val,
-		         '_entryName', _entryName)
 	         var lastChar = _entryName[_entryName.length - 1];
 	         _isDirectory = (lastChar == 47) || (lastChar == 92);
 	         _entryHeader.fileNameLength = _entryName.length;
