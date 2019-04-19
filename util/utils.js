@@ -1,5 +1,6 @@
 var fs = require("./fileSystem").require(),
     pth = require('path');
+var iconv = require('iconv-lite');
 
 fs.existsSync = fs.existsSync || pth.existsSync;
 
@@ -199,7 +200,8 @@ module.exports = (function() {
                 if (input.length === 0) {
                     return Buffer.alloc(0)
                 }
-                return Buffer.from(input, 'gbk');
+                // return Buffer.from(input, 'gbk');
+                return iconv.encode(input, 'gbk');
             }
         },
 

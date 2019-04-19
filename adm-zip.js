@@ -99,7 +99,7 @@ module.exports = function (/*String*/input) {
 				if (data && data.length) {
 					// return data.toString(encoding || "gbk");
 					let result = iconv.decode(data, encoding || "gbk")
-					console.log('readAsText 转换', 'item: ', item, 'data: ', data, 'result: ', result)
+					// console.log('readAsText 转换', 'item: ', item, 'data: ', data, 'result: ', result)
 					return result
 				}
 			}
@@ -126,7 +126,7 @@ module.exports = function (/*String*/input) {
 					if (data && data.length) {
 						// callback(data.toString(encoding || "gbk"));
 						let result = iconv.decode(data, encoding || "gbk")
-						console.log('readAsTextAsync 转换', 'item: ', item, 'data: ', data, 'result: ', result)
+						// console.log('readAsTextAsync 转换', 'item: ', item, 'data: ', data, 'result: ', result)
 						callback(result)
 					} else {
 						callback("");
