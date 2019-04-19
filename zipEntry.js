@@ -47,7 +47,7 @@ module.exports = function (/*Buffer*/input) {
         }
 
         var compressedData = getCompressedDataFromZip();
-       
+
         if (compressedData.length === 0) {
             if (async && callback) callback(compressedData, Utils.Errors.NO_DATA);//si added error.
             return compressedData;
@@ -197,12 +197,17 @@ module.exports = function (/*Buffer*/input) {
             // var lastChar = _entryName[_entryName.length - 1];
             // _isDirectory = (lastChar === 47) || (lastChar === 92);
             // _entryHeader.fileNameLength = _entryName.length;
-            var nameTemp = iconv.decode(val, 'GBK');
-            _entryName = Utils.toBuffer(nameTemp);
-            console.log('zdm-zip ===> ', 'val:', val, 'nameTemp', nameTemp, '_entryName', _entryName)
-            var lastChar = _entryName[_entryName.length - 1];
-            _isDirectory = (lastChar == 47) || (lastChar == 92);
-            _entryHeader.fileNameLength = _entryName.length;
+	         var nameTemp = iconv.decode(val, 'GBK');
+	         var nameTempBuf = iconv.encode(nameTemp, 'GBK')
+	         _entryName = Utils.toBuffer(nameTempBuf);
+	         console.warn('zdm-zip ===> ',
+		         'val:', val,
+		         'nameTemp', nameTemp,
+		         'nameTempBuf', nameTempBuf,
+		         '_entryName', _entryName)
+	         var lastChar = _entryName[_entryName.length - 1];
+	         _isDirectory = (lastChar == 47) || (lastChar == 92);
+	         _entryHeader.fileNameLength = _entryName.length;
         },
 
         get extra () { return _extra; },
