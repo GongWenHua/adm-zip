@@ -96,7 +96,7 @@ module.exports = function (/*String*/input) {
 			if (item) {
 				var data = item.getData();
 				if (data && data.length) {
-					return data.toString(encoding || "utf8");
+					return data.toString(encoding || "gbk");
 				}
 			}
 			return "";
@@ -120,7 +120,7 @@ module.exports = function (/*String*/input) {
 					}
 
 					if (data && data.length) {
-						callback(data.toString(encoding || "utf8"));
+						callback(data.toString(encoding || "gbk"));
 					} else {
 						callback("");
 					}
