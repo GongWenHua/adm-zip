@@ -193,11 +193,25 @@ module.exports = function (/*Buffer*/input) {
         get entryName () { return _entryName.toString(); },
         get rawEntryName() { return _entryName; },
         set entryName (val) {
-	         var _val = iconv.encode(val, 'GBK')
-	         _entryName = Utils.toBuffer(_val);
-	         var lastChar = _entryName[_entryName.length - 1];
-	         _isDirectory = (lastChar == 47) || (lastChar == 92);
-	         _entryHeader.fileNameLength = _entryName.length;
+	          // var encodeGBK = iconv.encode(val, 'GBK')
+	          // var encodeUTF = iconv.encode(val, 'UTF8')
+	          // var decodeUTF = iconv.decode(val, 'GBK')
+	          // var decodeUTF = iconv.decode(val, 'UTF8')
+            _entryName = Utils.toBuffer(val);
+            var lastChar = _entryName[_entryName.length - 1];
+            _isDirectory = (lastChar === 47) || (lastChar === 92);
+            _entryHeader.fileNameLength = _entryName.length;
+            console.log('val: ', val, '_entryName: ', _entryName, '_isDirectory: ', _isDirectory, '_entryHeader: ', _entryHeader)
+	         // var nameTemp = iconv.decode(val, 'GBK');
+	         // var _val = iconv.encode(val, 'GBK')
+	         // _entryName = Utils.toBuffer(_val);
+	         // console.warn('zdm-zip ===> ',
+		        //  'val:', val,
+		        //  '_val', _val,
+		        //  '_entryName', _entryName)
+	         // var lastChar = _entryName[_entryName.length - 1];
+	         // _isDirectory = (lastChar == 47) || (lastChar == 92);
+	         // _entryHeader.fileNameLength = _entryName.length;
         },
 
         get extra () { return _extra; },
