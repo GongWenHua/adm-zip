@@ -1,6 +1,7 @@
 var Utils = require("./util");
 var fs = Utils.FileSystem.require(),
 	pth = require("path");
+var iconv = require('iconv-lite');
 
 fs.existsSync = fs.existsSync || pth.existsSync;
 
@@ -96,7 +97,10 @@ module.exports = function (/*String*/input) {
 			if (item) {
 				var data = item.getData();
 				if (data && data.length) {
-					return data.toString(encoding || "gbk");
+					// return data.toString(encoding || "gbk");
+					let result = iconv.decode(data, encoding || "gbk")
+					console.log('readAsText 转换', 'item: ', item, 'data: ', data, 'result: ', result)
+					return result
 				}
 			}
 			return "";
@@ -120,7 +124,10 @@ module.exports = function (/*String*/input) {
 					}
 
 					if (data && data.length) {
-						callback(data.toString(encoding || "gbk"));
+						// callback(data.toString(encoding || "gbk"));
+						let result = iconv.decode(data, encoding || "gbk")
+						console.log('readAsTextAsync 转换', 'item: ', item, 'data: ', data, 'result: ', result)
+						callback(result)
 					} else {
 						callback("");
 					}
